@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { ChevronRight } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { usePedidoStore } from '../store/pedidoStore'
@@ -37,18 +37,24 @@ export default function NuevoPedido() {
   const { clientes, loading: clientesLoading } = useClientes(clienteQuery)
 
   // Filtered catalog
-  const categorias: Categoria[] = catalogo
-    .filter(p => p.codigo.length === 2)
-    .map(p => ({ codigo: p.codigo, nombre: p.descripcion }))
+  const categorias = useMemo<Categoria[]>(
+    () => catalogo
+      .filter(p => p.codigo.length === 2)
+      .map(p => ({ codigo: p.codigo, nombre: p.descripcion })),
+    [catalogo]
+  )
 
-  const filteredCatalogo = catalogo.filter(p => {
-    if (p.codigo.length === 2) return false
-    const matchCategoria = !categoriaSeleccionada || p.codigo.startsWith(categoriaSeleccionada)
-    const matchTexto =
-      p.descripcion.toLowerCase().includes(catalogoSearch.toLowerCase()) ||
-      p.codigo.toLowerCase().includes(catalogoSearch.toLowerCase())
-    return matchCategoria && matchTexto
-  })
+  const filteredCatalogo = useMemo(
+    () => catalogo.filter(p => {
+      if (p.codigo.length === 2) return false
+      const matchCategoria = !categoriaSeleccionada || p.codigo.startsWith(categoriaSeleccionada)
+      const matchTexto =
+        p.descripcion.toLowerCase().includes(catalogoSearch.toLowerCase()) ||
+        p.codigo.toLowerCase().includes(catalogoSearch.toLowerCase())
+      return matchCategoria && matchTexto
+    }),
+    [catalogo, categoriaSeleccionada, catalogoSearch]
+  )
 
   function getItemQuantity(codigo: string): number {
     return items.find(i => i.codigo === codigo)?.unidades ?? 0
