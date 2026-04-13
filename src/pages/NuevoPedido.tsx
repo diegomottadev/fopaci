@@ -5,9 +5,8 @@ import { usePedidoStore } from '../store/pedidoStore'
 import { useUIStore } from '../store/uiStore'
 import { useCatalogo } from '../hooks/useCatalogo'
 import { useClientes } from '../hooks/useClientes'
-import type { Producto } from '../types'
+import type { Producto, Categoria } from '../types'
 import { CategoriaPills } from '../components/CategoriaPills'
-import type { Categoria } from '../types'
 
 export default function NuevoPedido() {
   const navigate = useNavigate()
