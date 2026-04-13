@@ -1,7 +1,4 @@
-interface Categoria {
-  codigo: string
-  nombre: string
-}
+import type { Categoria } from '../types'
 
 interface CategoriaPillsProps {
   categorias: Categoria[]
