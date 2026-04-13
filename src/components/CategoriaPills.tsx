@@ -17,24 +17,22 @@ export function CategoriaPills({ categorias, seleccionada, onSelect }: Categoria
   if (categorias.length === 0) return null
 
   return (
-    <div className="overflow-x-auto">
-      <div className="flex gap-2 pb-1">
+    <div className="overflow-x-auto flex gap-2 pb-1">
+      <button
+        className={`${pillBase} ${seleccionada === null ? pillActive : pillInactive}`}
+        onClick={() => onSelect(null)}
+      >
+        Todas
+      </button>
+      {categorias.map(cat => (
         <button
-          className={`${pillBase} ${seleccionada === null ? pillActive : pillInactive}`}
-          onClick={() => onSelect(null)}
+          key={cat.codigo}
+          className={`${pillBase} ${seleccionada === cat.codigo ? pillActive : pillInactive}`}
+          onClick={() => onSelect(cat.codigo)}
         >
-          Todas
+          {cat.nombre}
         </button>
-        {categorias.map(cat => (
-          <button
-            key={cat.codigo}
-            className={`${pillBase} ${seleccionada === cat.codigo ? pillActive : pillInactive}`}
-            onClick={() => onSelect(cat.codigo)}
-          >
-            {cat.nombre}
-          </button>
-        ))}
-      </div>
+      ))}
     </div>
   )
 }
