@@ -26,6 +26,7 @@ export interface PedidoItem {
   descripcion: string
   unidades: number
   precioUnitario: number
+  descuento?: number   // percentage 0-100, undefined = 0
   subtotal: number
 }
 
@@ -36,10 +37,13 @@ export interface WebhookPayload {
     fecha: string           // "YYYY-MM-DD"
     vendedor: string
     cliente: string
+    nombreComercial?: string
     dniCuilCodigo: string
     items: PedidoItem[]
     total: number
-    estado: 'Pendiente' | 'Enviado' | 'Cancelado'
+    estado: 'Pendiente' | 'Cancelado' | 'A cobrar' | 'Finalizado'
+    descuentoGeneral?: number  // percentage 0-100, undefined = 0
+    observacion?: string
   }
 }
 
@@ -48,10 +52,13 @@ export interface PedidoHistorial {
   fecha: string
   vendedor: string
   cliente: string
+  nombreComercial?: string
   dniCuilCodigo: string
   items: PedidoItem[]
   total: number
-  estado: 'Pendiente' | 'Enviado' | 'Cancelado'
+  estado: 'Pendiente' | 'Cancelado' | 'A cobrar' | 'Finalizado'
+  descuentoGeneral?: number
+  observacion?: string
   isPending?: boolean    // true if still in pending-orders queue
 }
 

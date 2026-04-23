@@ -7,8 +7,8 @@ interface CategoriaPillsProps {
 }
 
 const pillBase = 'px-3 py-1.5 rounded-full text-xs font-medium border whitespace-nowrap transition-colors'
-const pillActive = 'bg-red-800 text-white border-red-800'
-const pillInactive = 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+const pillActive = 'bg-brand-800 text-white border-brand-800'
+const pillInactive = 'bg-white border-[var(--color-border)] hover:bg-brand-50 cursor-pointer'
 
 export function CategoriaPills({ categorias, seleccionada, onSelect }: CategoriaPillsProps) {
   if (categorias.length === 0) return null

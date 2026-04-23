@@ -29,12 +29,12 @@ describe('CategoriaPills', () => {
 
   it('"Todas" pill has active style when seleccionada is null', () => {
     render(<CategoriaPills categorias={categorias} seleccionada={null} onSelect={vi.fn()} />)
-    expect(screen.getAllByRole('button')[0].className).toContain('bg-red-800')
+    expect(screen.getAllByRole('button')[0].className).toContain('bg-brand-800')
   })
 
   it('category pill has active style when seleccionada matches', () => {
     render(<CategoriaPills categorias={categorias} seleccionada="01" onSelect={vi.fn()} />)
-    expect(screen.getByText('GRANJA SUIZA').className).toContain('bg-red-800')
+    expect(screen.getByText('GRANJA SUIZA').className).toContain('bg-brand-800')
   })
 
   it('clicking "Todas" calls onSelect(null)', async () => {

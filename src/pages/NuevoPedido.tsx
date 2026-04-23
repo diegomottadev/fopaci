@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react'
-import { ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { ClienteCombobox } from '../components/ClienteCombobox'
 import { usePedidoStore } from '../store/pedidoStore'
 import { useUIStore } from '../store/uiStore'
 import { useCatalogo } from '../hooks/useCatalogo'
 import { useClientes } from '../hooks/useClientes'
 import type { Producto, Categoria } from '../types'
-import { CategoriaPills } from '../components/CategoriaPills'
 
 export default function NuevoPedido() {
   const navigate = useNavigate()
@@ -102,12 +102,14 @@ export default function NuevoPedido() {
   return (
     <div className={`space-y-6${items.length > 0 ? ' pb-24' : ''}`}>
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-900">
-          {isEdit ? 'Editar Pedido' : 'Nuevo Pedido'}
-        </h2>
-        <button onClick={handleCancelar} className="text-sm text-gray-500 hover:text-gray-700">
-          Cancelar
-        </button>
+        <div className="flex items-center gap-2">
+          <button onClick={handleCancelar} className="text-brand-700 hover:text-brand-900 cursor-pointer">
+            <ChevronLeft size={20} />
+          </button>
+          <h2 className="text-xl font-bold text-gray-900">
+            {isEdit ? 'Editar Pedido' : 'Nuevo Pedido'}
+          </h2>
+        </div>
       </div>
 
       {/* Cliente search */}
@@ -122,36 +124,18 @@ export default function NuevoPedido() {
                 <p className="text-xs text-gray-500">{cliente.cuil ?? cliente.dni}</p>
               )}
             </div>
-            <button onClick={() => setCliente(null)} className="text-xs text-red-600 hover:text-red-800">
+            <button onClick={() => setCliente(null)} className="text-xs text-brand-700 hover:text-brand-900 cursor-pointer">
               Cambiar
             </button>
           </div>
         ) : (
-          <div className="space-y-1">
-            <input
-              type="text"
-              placeholder="Buscar por nombre, CUIT o código…"
-              value={clienteQuery}
-              onChange={e => setClienteQuery(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-800"
-            />
-            {clientesLoading && <p className="text-xs text-gray-500">Buscando…</p>}
-            {clientes.length > 0 && (
-              <ul className="border border-gray-200 rounded-lg divide-y max-h-48 overflow-y-auto">
-                {clientes.map(c => (
-                  <li key={c.rowIndex}>
-                    <button
-                      className="w-full text-left px-3 py-2 hover:bg-gray-50 text-sm"
-                      onClick={() => { setCliente(c); setClienteQuery('') }}
-                    >
-                      <span className="font-medium">{c.nombre}</span>
-                      {(c.cuil || c.dni) && <span className="text-gray-500 ml-2 text-xs">{c.cuil ?? c.dni}</span>}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          <ClienteCombobox
+            query={clienteQuery}
+            onQueryChange={setClienteQuery}
+            clientes={clientes}
+            loading={clientesLoading}
+            onSelect={c => { setCliente(c); setClienteQuery('') }}
+          />
         )}
       </div>
 
@@ -163,8 +147,9 @@ export default function NuevoPedido() {
             onClick={() => setTipoPrecio(tipo)}
             className={`flex-1 py-2 rounded-lg text-sm font-medium border transition-colors
               ${tipoPrecio === tipo
-                ? 'bg-red-800 text-white border-red-800'
-                : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'}`}
+                ? 'bg-brand-800 text-white border-brand-800'
+                : 'bg-white border-[var(--color-border)] hover:bg-brand-50'}`}
+          style={tipoPrecio !== tipo ? { color: 'var(--color-text-muted)' } : {}}
           >
             {tipo === 'mayorista' ? 'Mayorista' : 'Público'}
           </button>
@@ -174,21 +159,28 @@ export default function NuevoPedido() {
       {/* Catálogo */}
       <div className="space-y-2">
         <label className="block text-sm font-medium text-gray-700">Catálogo</label>
-        {!catalogoLoading && (
-          <CategoriaPills
-            categorias={categorias}
-            seleccionada={categoriaSeleccionada}
-            onSelect={setCategoriaSeleccionada}
-          />
+        {!catalogoLoading && categorias.length > 0 && (
+          <select
+            value={categoriaSeleccionada ?? ''}
+            onChange={e => setCategoriaSeleccionada(e.target.value || null)}
+            className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800 bg-white"
+            style={{ borderColor: 'var(--color-border)' }}
+          >
+            <option value="">Todas las categorías</option>
+            {categorias.map(cat => (
+              <option key={cat.codigo} value={cat.codigo}>{cat.nombre}</option>
+            ))}
+          </select>
         )}
         <input
           type="text"
           placeholder="Filtrar productos…"
           value={catalogoSearch}
           onChange={e => setCatalogoSearch(e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-800"
+          className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800"
+          style={{ borderColor: 'var(--color-border)' }}
         />
-        {catalogoLoading && <p className="text-sm text-gray-500">Cargando catálogo…</p>}
+        {catalogoLoading && <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Cargando catálogo…</p>}
         <ul className="space-y-2">
           {filteredCatalogo.map(producto => {
             const qty = getItemQuantity(producto.codigo)
@@ -197,8 +189,9 @@ export default function NuevoPedido() {
               <li
                 key={producto.codigo}
                 className={`flex items-center justify-between rounded-lg px-3 py-2 border transition-colors ${
-                  qty > 0 ? 'border-red-200 bg-red-50/40' : 'border-gray-200 bg-white'
+                  qty > 0 ? 'border-brand-200 bg-brand-50/60' : 'bg-white'
                 }`}
+                style={qty === 0 ? { borderColor: 'var(--color-border)' } : {}}
               >
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-gray-900 truncate">{producto.descripcion}</p>
@@ -220,7 +213,7 @@ export default function NuevoPedido() {
                   ) : (
                     <button
                       onClick={() => handleAddItem(producto)}
-                      className="text-xs bg-red-800 text-white px-2 py-1 rounded-lg hover:bg-red-900"
+                      className="text-xs bg-brand-800 text-white px-2 py-1 rounded-lg hover:bg-brand-900 cursor-pointer"
                     >
                       Agregar
                     </button>
@@ -239,10 +232,10 @@ export default function NuevoPedido() {
 
       {/* Order summary */}
       {items.length > 0 && (
-        <div className="bg-gray-100 rounded-lg p-3 space-y-1">
-          <p className="text-sm font-semibold text-gray-700">Pedido actual</p>
+        <div className="bg-brand-50 rounded-lg p-3 space-y-1 border border-brand-100">
+          <p className="text-sm font-semibold text-brand-800">Pedido actual</p>
           {items.map(item => (
-            <div key={item.codigo} className="flex justify-between text-sm text-gray-600">
+            <div key={item.codigo} className="flex justify-between text-sm" style={{ color: 'var(--color-text-muted)' }}>
               <span>{item.descripcion} × {item.unidades}</span>
               <span>${item.subtotal.toLocaleString('es-AR')}</span>
             </div>
@@ -266,7 +259,7 @@ export default function NuevoPedido() {
             </div>
             <button
               onClick={handleContinuar}
-              className="flex-1 bg-red-800 text-white py-3 rounded-lg font-semibold hover:bg-red-900 transition-colors flex items-center justify-center gap-1"
+              className="flex-1 bg-brand-800 text-white py-3 rounded-lg font-semibold hover:bg-brand-900 transition-colors flex items-center justify-center gap-1 cursor-pointer"
             >
               Continuar <ChevronRight size={18} />
             </button>

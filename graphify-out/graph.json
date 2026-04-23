@@ -1,0 +1,1284 @@
+{
+  "nodes": [
+    {
+      "id": "eslint_config_js",
+      "label": "eslint.config.js",
+      "file_type": "code",
+      "source_file": "eslint.config.js",
+      "source_location": "L1"
+    },
+    {
+      "id": "vite_config_ts",
+      "label": "vite.config.ts",
+      "file_type": "code",
+      "source_file": "vite.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "vitest_config_ts",
+      "label": "vitest.config.ts",
+      "file_type": "code",
+      "source_file": "vitest.config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_app_tsx",
+      "label": "App.tsx",
+      "file_type": "code",
+      "source_file": "src\\App.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "app_app",
+      "label": "App()",
+      "file_type": "code",
+      "source_file": "src\\App.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_main_tsx",
+      "label": "main.tsx",
+      "file_type": "code",
+      "source_file": "src\\main.tsx",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_vite_env_d_ts",
+      "label": "vite-env.d.ts",
+      "file_type": "code",
+      "source_file": "src\\vite-env.d.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_db_offlinequeue_ts",
+      "label": "offlineQueue.ts",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "offlinequeue_resetdb",
+      "label": "resetDB()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "offlinequeue_openvinotecadb",
+      "label": "openVinotecaDB()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L31"
+    },
+    {
+      "id": "offlinequeue_addpendingorder",
+      "label": "addPendingOrder()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L52"
+    },
+    {
+      "id": "offlinequeue_getallpendingorders",
+      "label": "getAllPendingOrders()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L57"
+    },
+    {
+      "id": "offlinequeue_removependingorder",
+      "label": "removePendingOrder()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L62"
+    },
+    {
+      "id": "offlinequeue_countpendingorders",
+      "label": "countPendingOrders()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L67"
+    },
+    {
+      "id": "offlinequeue_savecatalogo",
+      "label": "saveCatalogo()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L74"
+    },
+    {
+      "id": "offlinequeue_getcatalogo",
+      "label": "getCatalogo()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L79"
+    },
+    {
+      "id": "offlinequeue_savevendedores",
+      "label": "saveVendedores()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L86"
+    },
+    {
+      "id": "offlinequeue_getvendedores",
+      "label": "getVendedores()",
+      "file_type": "code",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L91"
+    },
+    {
+      "id": "src_services_sheets_ts",
+      "label": "sheets.ts",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "sheets_buildgvizurl",
+      "label": "buildGvizUrl()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "sheets_parsegviz",
+      "label": "parseGviz()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "sheets_cellvalue",
+      "label": "cellValue()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "sheets_cellnumber",
+      "label": "cellNumber()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L32"
+    },
+    {
+      "id": "sheets_mapproducto",
+      "label": "mapProducto()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "sheets_findcolindex",
+      "label": "findColIndex()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L57"
+    },
+    {
+      "id": "sheets_mapcliente",
+      "label": "mapCliente()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L61"
+    },
+    {
+      "id": "sheets_fetchgviz",
+      "label": "fetchGviz()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L85"
+    },
+    {
+      "id": "sheets_fetchcatalogo",
+      "label": "fetchCatalogo()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L92"
+    },
+    {
+      "id": "sheets_fetchvendedores",
+      "label": "fetchVendedores()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L98"
+    },
+    {
+      "id": "sheets_buscarencliente",
+      "label": "buscarEnCliente()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L104"
+    },
+    {
+      "id": "sheets_fetchclientes",
+      "label": "fetchClientes()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L114"
+    },
+    {
+      "id": "sheets_fetchpedidos",
+      "label": "fetchPedidos()",
+      "file_type": "code",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L122"
+    },
+    {
+      "id": "src_types_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "src\\types\\index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tests_offlinequeue_test_ts",
+      "label": "offlineQueue.test.ts",
+      "file_type": "code",
+      "source_file": "src\\__tests__\\offlineQueue.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "src_tests_sheets_test_ts",
+      "label": "sheets.test.ts",
+      "file_type": "code",
+      "source_file": "src\\__tests__\\sheets.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "readme_fopaci_project",
+      "label": "Fopaci Project",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_react",
+      "label": "React",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_typescript",
+      "label": "TypeScript",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_vite",
+      "label": "Vite",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_hmr",
+      "label": "Hot Module Replacement (HMR)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_eslint",
+      "label": "ESLint",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_plugin_react",
+      "label": "@vitejs/plugin-react",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_babel",
+      "label": "Babel",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_swc",
+      "label": "SWC",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 8",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_tseslint",
+      "label": "tseslint",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 17",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "readme_eslint_plugin_react",
+      "label": "eslint-plugin-react",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "line 30",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "vitesvg_vite_logo",
+      "label": "Vite Logo (SVG)",
+      "file_type": "image",
+      "source_file": "public/vite.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "reactsvg_react_logo",
+      "label": "React Logo (SVG)",
+      "file_type": "image",
+      "source_file": "src/assets/react.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "src_app_tsx",
+      "target": "app_app",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\App.tsx",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_src": "src_app_tsx",
+      "_tgt": "app_app"
+    },
+    {
+      "source": "src_app_tsx",
+      "target": "src_main_tsx",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\main.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_src": "src_main_tsx",
+      "_tgt": "src_app_tsx"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_resetdb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_resetdb"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_openvinotecadb",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L31",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_addpendingorder",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L52",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_addpendingorder"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_getallpendingorders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_getallpendingorders"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_removependingorder",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_removependingorder"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_countpendingorders",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_countpendingorders"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_savecatalogo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L74",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_savecatalogo"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_getcatalogo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L79",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_getcatalogo"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_savevendedores",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L86",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_savevendedores"
+    },
+    {
+      "source": "src_db_offlinequeue_ts",
+      "target": "offlinequeue_getvendedores",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_src": "src_db_offlinequeue_ts",
+      "_tgt": "offlinequeue_getvendedores"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_addpendingorder",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L53",
+      "weight": 1.0,
+      "_src": "offlinequeue_addpendingorder",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_getallpendingorders",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L58",
+      "weight": 1.0,
+      "_src": "offlinequeue_getallpendingorders",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_removependingorder",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_src": "offlinequeue_removependingorder",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_countpendingorders",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L68",
+      "weight": 1.0,
+      "_src": "offlinequeue_countpendingorders",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_savecatalogo",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "offlinequeue_savecatalogo",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_getcatalogo",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_src": "offlinequeue_getcatalogo",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_savevendedores",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_src": "offlinequeue_savevendedores",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "offlinequeue_openvinotecadb",
+      "target": "offlinequeue_getvendedores",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\db\\offlineQueue.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "offlinequeue_getvendedores",
+      "_tgt": "offlinequeue_openvinotecadb"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_buildgvizurl",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_buildgvizurl"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_parsegviz",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_parsegviz"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_cellvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_cellvalue"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_cellnumber",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_cellnumber"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_mapproducto",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_mapproducto"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_findcolindex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L57",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_findcolindex"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_mapcliente",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L61",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_mapcliente"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_fetchgviz",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_fetchgviz"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_fetchcatalogo",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_fetchcatalogo"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_fetchvendedores",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L98",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_fetchvendedores"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_buscarencliente",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_buscarencliente"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_fetchclientes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L114",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_fetchclientes"
+    },
+    {
+      "source": "src_services_sheets_ts",
+      "target": "sheets_fetchpedidos",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L122",
+      "weight": 1.0,
+      "_src": "src_services_sheets_ts",
+      "_tgt": "sheets_fetchpedidos"
+    },
+    {
+      "source": "sheets_buildgvizurl",
+      "target": "sheets_fetchcatalogo",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L93",
+      "weight": 1.0,
+      "_src": "sheets_fetchcatalogo",
+      "_tgt": "sheets_buildgvizurl"
+    },
+    {
+      "source": "sheets_buildgvizurl",
+      "target": "sheets_fetchvendedores",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L99",
+      "weight": 1.0,
+      "_src": "sheets_fetchvendedores",
+      "_tgt": "sheets_buildgvizurl"
+    },
+    {
+      "source": "sheets_buildgvizurl",
+      "target": "sheets_fetchclientes",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_src": "sheets_fetchclientes",
+      "_tgt": "sheets_buildgvizurl"
+    },
+    {
+      "source": "sheets_buildgvizurl",
+      "target": "sheets_fetchpedidos",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L123",
+      "weight": 1.0,
+      "_src": "sheets_fetchpedidos",
+      "_tgt": "sheets_buildgvizurl"
+    },
+    {
+      "source": "sheets_parsegviz",
+      "target": "sheets_fetchgviz",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L89",
+      "weight": 1.0,
+      "_src": "sheets_fetchgviz",
+      "_tgt": "sheets_parsegviz"
+    },
+    {
+      "source": "sheets_cellvalue",
+      "target": "sheets_mapproducto",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_src": "sheets_mapproducto",
+      "_tgt": "sheets_cellvalue"
+    },
+    {
+      "source": "sheets_cellvalue",
+      "target": "sheets_mapcliente",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L75",
+      "weight": 1.0,
+      "_src": "sheets_mapcliente",
+      "_tgt": "sheets_cellvalue"
+    },
+    {
+      "source": "sheets_cellnumber",
+      "target": "sheets_mapproducto",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_src": "sheets_mapproducto",
+      "_tgt": "sheets_cellnumber"
+    },
+    {
+      "source": "sheets_findcolindex",
+      "target": "sheets_mapcliente",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L62",
+      "weight": 1.0,
+      "_src": "sheets_mapcliente",
+      "_tgt": "sheets_findcolindex"
+    },
+    {
+      "source": "sheets_fetchgviz",
+      "target": "sheets_fetchcatalogo",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L94",
+      "weight": 1.0,
+      "_src": "sheets_fetchcatalogo",
+      "_tgt": "sheets_fetchgviz"
+    },
+    {
+      "source": "sheets_fetchgviz",
+      "target": "sheets_fetchvendedores",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L100",
+      "weight": 1.0,
+      "_src": "sheets_fetchvendedores",
+      "_tgt": "sheets_fetchgviz"
+    },
+    {
+      "source": "sheets_fetchgviz",
+      "target": "sheets_fetchclientes",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_src": "sheets_fetchclientes",
+      "_tgt": "sheets_fetchgviz"
+    },
+    {
+      "source": "sheets_fetchgviz",
+      "target": "sheets_fetchpedidos",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "src\\services\\sheets.ts",
+      "source_location": "L126",
+      "weight": 1.0,
+      "_src": "sheets_fetchpedidos",
+      "_tgt": "sheets_fetchgviz"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_react",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_react"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_typescript",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_typescript"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_vite",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 1",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_vite"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_hmr",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_hmr"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_eslint",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 3",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_eslint"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_plugin_react",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_plugin_react"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_tseslint",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 17",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_tseslint"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "readme_eslint_plugin_react",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 30",
+      "weight": 1.0,
+      "_src": "readme_fopaci_project",
+      "_tgt": "readme_eslint_plugin_react"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "vitesvg_vite_logo",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "public/vite.svg",
+      "source_location": null,
+      "weight": 0.9,
+      "_src": "readme_fopaci_project",
+      "_tgt": "vitesvg_vite_logo"
+    },
+    {
+      "source": "readme_fopaci_project",
+      "target": "reactsvg_react_logo",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.9,
+      "source_file": "src/assets/react.svg",
+      "source_location": null,
+      "weight": 0.9,
+      "_src": "readme_fopaci_project",
+      "_tgt": "reactsvg_react_logo"
+    },
+    {
+      "source": "readme_react",
+      "target": "reactsvg_react_logo",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "src/assets/react.svg",
+      "source_location": null,
+      "weight": 0.95,
+      "_src": "reactsvg_react_logo",
+      "_tgt": "readme_react"
+    },
+    {
+      "source": "readme_vite",
+      "target": "vitesvg_vite_logo",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "public/vite.svg",
+      "source_location": null,
+      "weight": 0.95,
+      "_src": "vitesvg_vite_logo",
+      "_tgt": "readme_vite"
+    },
+    {
+      "source": "readme_eslint",
+      "target": "readme_tseslint",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "README.md",
+      "source_location": "line 17",
+      "weight": 0.85,
+      "_src": "readme_eslint",
+      "_tgt": "readme_tseslint"
+    },
+    {
+      "source": "readme_plugin_react",
+      "target": "readme_babel",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 7",
+      "weight": 1.0,
+      "_src": "readme_plugin_react",
+      "_tgt": "readme_babel"
+    }
+  ],
+  "communities": {
+    "0": [
+      "reactsvg_react_logo",
+      "readme_babel",
+      "readme_eslint",
+      "readme_eslint_plugin_react",
+      "readme_fopaci_project",
+      "readme_hmr",
+      "readme_plugin_react",
+      "readme_react",
+      "readme_tseslint",
+      "readme_typescript",
+      "readme_vite",
+      "vitesvg_vite_logo"
+    ],
+    "1": [
+      "offlinequeue_addpendingorder",
+      "offlinequeue_countpendingorders",
+      "offlinequeue_getallpendingorders",
+      "offlinequeue_getcatalogo",
+      "offlinequeue_getvendedores",
+      "offlinequeue_openvinotecadb",
+      "offlinequeue_removependingorder",
+      "offlinequeue_resetdb",
+      "offlinequeue_savecatalogo",
+      "offlinequeue_savevendedores",
+      "src_db_offlinequeue_ts"
+    ],
+    "2": [
+      "sheets_buildgvizurl",
+      "sheets_fetchcatalogo",
+      "sheets_fetchclientes",
+      "sheets_fetchgviz",
+      "sheets_fetchpedidos",
+      "sheets_fetchvendedores",
+      "sheets_parsegviz"
+    ],
+    "3": [
+      "sheets_buscarencliente",
+      "sheets_cellnumber",
+      "sheets_cellvalue",
+      "sheets_findcolindex",
+      "sheets_mapcliente",
+      "sheets_mapproducto",
+      "src_services_sheets_ts"
+    ],
+    "4": [
+      "app_app",
+      "src_app_tsx",
+      "src_main_tsx"
+    ],
+    "5": [
+      "eslint_config_js"
+    ],
+    "6": [
+      "vite_config_ts"
+    ],
+    "7": [
+      "vitest_config_ts"
+    ],
+    "8": [
+      "src_vite_env_d_ts"
+    ],
+    "9": [
+      "src_types_index_ts"
+    ],
+    "10": [
+      "src_tests_offlinequeue_test_ts"
+    ],
+    "11": [
+      "src_tests_sheets_test_ts"
+    ],
+    "12": [
+      "readme_swc"
+    ]
+  },
+  "community_labels": {
+    "0": "react / logo / eslint",
+    "1": "offlinequeue / addpendingorder / countpendingorders",
+    "2": "sheets / buildgvizurl / fetchcatalogo",
+    "3": "sheets / buscarencliente / cellnumber",
+    "4": "app / main",
+    "5": "eslint",
+    "6": "vite",
+    "7": "vitest",
+    "8": "vite / env",
+    "9": "types / index",
+    "10": "tests / offlinequeue",
+    "11": "tests / sheets",
+    "12": "swc"
+  },
+  "cohesion_scores": {
+    "0": 0.21,
+    "1": 0.33,
+    "2": 0.43,
+    "3": 0.48,
+    "4": 0.67,
+    "5": 1.0,
+    "6": 1.0,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0
+  },
+  "god_nodes": [
+    {
+      "id": "readme_fopaci_project",
+      "label": "Fopaci Project",
+      "edges": 10
+    },
+    {
+      "id": "offlinequeue_openvinotecadb",
+      "label": "openVinotecaDB()",
+      "edges": 9
+    },
+    {
+      "id": "sheets_fetchgviz",
+      "label": "fetchGviz()",
+      "edges": 6
+    },
+    {
+      "id": "sheets_buildgvizurl",
+      "label": "buildGvizUrl()",
+      "edges": 5
+    },
+    {
+      "id": "sheets_cellvalue",
+      "label": "cellValue()",
+      "edges": 3
+    },
+    {
+      "id": "sheets_mapproducto",
+      "label": "mapProducto()",
+      "edges": 3
+    },
+    {
+      "id": "sheets_mapcliente",
+      "label": "mapCliente()",
+      "edges": 3
+    },
+    {
+      "id": "sheets_fetchcatalogo",
+      "label": "fetchCatalogo()",
+      "edges": 3
+    },
+    {
+      "id": "sheets_fetchvendedores",
+      "label": "fetchVendedores()",
+      "edges": 3
+    },
+    {
+      "id": "sheets_fetchclientes",
+      "label": "fetchClientes()",
+      "edges": 3
+    }
+  ],
+  "surprising_connections": [
+    {
+      "source": "React Logo (SVG)",
+      "target": "React",
+      "source_files": [
+        "src/assets/react.svg",
+        "README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Vite Logo (SVG)",
+      "target": "Vite",
+      "source_files": [
+        "public/vite.svg",
+        "README.md"
+      ],
+      "confidence": "INFERRED",
+      "relation": "semantically_similar_to",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); connects across different repos/directories; semantically similar concepts with no structural link"
+    },
+    {
+      "source": "Fopaci Project",
+      "target": "Vite Logo (SVG)",
+      "source_files": [
+        "README.md",
+        "public/vite.svg"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); connects across different repos/directories; peripheral node `Vite Logo (SVG)` unexpectedly reaches hub `Fopaci Project`"
+    },
+    {
+      "source": "Fopaci Project",
+      "target": "React Logo (SVG)",
+      "source_files": [
+        "README.md",
+        "src/assets/react.svg"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (doc \u2194 image); connects across different repos/directories; peripheral node `React Logo (SVG)` unexpectedly reaches hub `Fopaci Project`"
+    }
+  ],
+  "suggested_questions": [
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `Fopaci Project` (e.g. with `Vite Logo (SVG)` and `React Logo (SVG)`) actually correct?",
+      "why": "`Fopaci Project` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `TypeScript`, `Hot Module Replacement (HMR)`, `Babel` to the rest of the system?",
+      "why": "5 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

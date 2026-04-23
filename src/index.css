@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Fopaci brand — burgundy wine */
+  --color-brand-50:  #fdf2f4;
+  --color-brand-100: #fce7ea;
+  --color-brand-200: #f0c4ce;
+  --color-brand-600: #a52240;
+  --color-brand-700: #8a1b34;
+  --color-brand-800: #72243d;
+  --color-brand-900: #5a1028;
+}
+
+:root {
+  --color-surface: #faf7f8;
+  --color-border: #e8dde0;
+  --color-text-muted: #7a5c62;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #faf7f8;
+}
