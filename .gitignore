@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+dev-dist
 *.local
 .env
 
@@ -23,3 +24,13 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude / internal tools
+.claude/
+graphify-out/
+docs/
+CLAUDE.md
+developer.md
+
+# Google Apps Script (no va al repo)
+apps-script/
