@@ -232,7 +232,7 @@ export default function Resumen() {
                   step="0.01"
                   value={descuentos[item.codigo] ?? ''}
                   onChange={e => setDescuentos(prev => ({ ...prev, [item.codigo]: e.target.value }))}
-                  disabled={confirmado}
+                  disabled={sending || confirmado}
                   placeholder="0"
                   className="w-14 border rounded px-1.5 py-0.5 text-xs text-right focus:outline-none focus:ring-1 focus:ring-brand-800 disabled:opacity-50 disabled:cursor-not-allowed"
                   style={{ borderColor: 'var(--color-border)' }}
@@ -258,7 +258,7 @@ export default function Resumen() {
               step="0.01"
               value={descuentoGeneral}
               onChange={e => setDescuentoGeneral(e.target.value)}
-              disabled={confirmado}
+              disabled={sending || confirmado}
               placeholder="0"
               className="w-14 border rounded px-1.5 py-0.5 text-xs text-right font-normal focus:outline-none focus:ring-1 focus:ring-brand-800 disabled:opacity-50 disabled:cursor-not-allowed"
               style={{ borderColor: 'var(--color-border)' }}
@@ -278,7 +278,7 @@ export default function Resumen() {
           min={fecha}
           value={fechaEntrega}
           onChange={e => { if (!e.target.value || e.target.value >= fecha) setFechaEntrega(e.target.value) }}
-          disabled={confirmado}
+          disabled={sending || confirmado}
           className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ borderColor: 'var(--color-border)' }}
         />
@@ -290,7 +290,7 @@ export default function Resumen() {
         <textarea
           value={observacion}
           onChange={e => setObservacion(e.target.value)}
-          disabled={confirmado}
+          disabled={sending || confirmado}
           rows={3}
           placeholder="Notas o aclaraciones del pedido…"
           className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800 resize-none disabled:opacity-50 disabled:cursor-not-allowed"
