@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Check, ChevronLeft } from 'lucide-react'
+import { Check, ChevronLeft, RefreshCw } from 'lucide-react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { usePedidoStore } from '../store/pedidoStore'
 import { useUIStore } from '../store/uiStore'
@@ -133,7 +133,9 @@ export default function Resumen() {
                 disabled={sending}
                 className="flex-1 bg-brand-800 text-white py-2.5 rounded-lg font-semibold hover:bg-brand-900 transition-colors disabled:opacity-50 cursor-pointer"
               >
-                {sending ? 'Enviando…' : 'Sí, confirmar'}
+                {sending
+                  ? <span className="flex items-center justify-center gap-2"><RefreshCw size={14} className="animate-spin" />Enviando…</span>
+                  : 'Sí, confirmar'}
               </button>
               <button
                 onClick={() => setConfirmando(false)}
