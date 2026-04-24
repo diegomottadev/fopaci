@@ -283,7 +283,11 @@ export default function Resumen() {
           disabled={sending || confirmado}
           className="w-full bg-brand-800 text-white py-3 rounded-lg font-semibold hover:bg-brand-900 transition-colors disabled:opacity-50 cursor-pointer"
         >
-          {confirmado ? 'Pedido confirmado ✓' : 'Confirmar y Enviar'}
+          {confirmado
+            ? 'Pedido confirmado ✓'
+            : sending
+              ? <span className="flex items-center justify-center gap-2"><RefreshCw size={14} className="animate-spin" />Enviando…</span>
+              : 'Confirmar y Enviar'}
         </button>
         <button
           onClick={handleDescargarPDF}
