@@ -14,7 +14,7 @@ import { useUIStore } from '../store/uiStore'
 import { enviarPedido } from '../services/pedidos'
 import { addPendingOrder } from '../db/offlineQueue'
 import { generateRemitoPDF } from '../services/pdf'
-import { formatCurrency } from '../utils/format'
+import { formatCurrency, formatDate } from '../utils/format'
 import type { WebhookPayload } from '../types'
 
 export default function HistorialDetalle() {
@@ -115,11 +115,11 @@ export default function HistorialDetalle() {
       {/* Info */}
       <div className="bg-white border rounded-lg p-4 space-y-2 text-sm" style={{ borderColor: 'var(--color-border)' }}>
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Pedido</span><span className="font-mono text-xs">{pedido.pedidoId}</span></div>
-        <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha</span><span>{pedido.fecha}</span></div>
+        <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha</span><span>{formatDate(pedido.fecha)}</span></div>
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Vendedor</span><span>{pedido.vendedor}</span></div>
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Cliente</span><span className="font-medium">{pedido.cliente}</span></div>
         {pedido.dniCuilCodigo && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>CUIT/DNI</span><span>{pedido.dniCuilCodigo}</span></div>}
-        {pedido.fechaEntrega && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega</span><span>{pedido.fechaEntrega}</span></div>}
+        {pedido.fechaEntrega && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega</span><span>{formatDate(pedido.fechaEntrega)}</span></div>}
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Estado</span>
           <span className={`text-xs px-2 py-0.5 rounded-full ${
             pedido.isPending ? 'bg-orange-100 text-orange-800' :
@@ -134,17 +134,17 @@ export default function HistorialDetalle() {
           const pct = item.descuento ?? 0
           const subtotalOriginal = item.precioUnitario * item.unidades
           return (
-            <div key={`${item.codigo}-${i}`} className="flex justify-between text-sm py-1 border-b border-brand-100">
-              <div>
+            <div key={`${item.codigo}-${i}`} className="flex items-center justify-between text-sm py-1 border-b border-brand-100 gap-2">
+              <div className="flex-1 min-w-0">
                 <span className="font-medium">{item.descripcion}</span>
                 <span className="ml-2" style={{ color: 'var(--color-text-muted)' }}>× {item.unidades}</span>
                 {pct > 0 && (
                   <span className="ml-2 text-xs text-brand-700">−{pct}%</span>
                 )}
               </div>
-              <div className="text-right">
+              <div className="flex items-center gap-2 shrink-0">
                 {pct > 0 && (
-                  <span className="block text-xs line-through" style={{ color: 'var(--color-text-muted)' }}>
+                  <span className="text-xs line-through" style={{ color: 'var(--color-text-muted)' }}>
                     {formatCurrency(subtotalOriginal)}
                   </span>
                 )}

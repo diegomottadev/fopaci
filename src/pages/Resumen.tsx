@@ -6,7 +6,7 @@ import { useUIStore } from '../store/uiStore'
 import { enviarPedido } from '../services/pedidos'
 import { addPendingOrder } from '../db/offlineQueue'
 import { generateRemitoPDF } from '../services/pdf'
-import { formatCurrency } from '../utils/format'
+import { formatCurrency, formatDate } from '../utils/format'
 import type { WebhookPayload } from '../types'
 
 export default function Resumen() {
@@ -174,7 +174,7 @@ export default function Resumen() {
         </div>
         <div className="flex justify-between">
           <span style={{ color: 'var(--color-text-muted)' }}>Fecha</span>
-          <span className="font-medium">{fecha}</span>
+          <span className="font-medium">{formatDate(fecha)}</span>
         </div>
       </div>
 

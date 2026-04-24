@@ -30,14 +30,14 @@ export function useVendedorLogin(): UseVendedorLogin {
       saveVendedoresInfo(lista).catch(() => undefined)
       const match = lista.find(v => v.dni.replace(/[-\s]/g, '') === normalized)
       if (match) {
-        setVendedor(match.nombre)
+        setVendedor(match.nombre, normalized)
       } else {
         setError('DNI no encontrado')
       }
     } catch {
       // Offline: use cached list to resolve name, or use DNI as fallback
       const match = cached?.find(v => v.dni.replace(/[-\s]/g, '') === normalized)
-      setVendedor(match ? match.nombre : normalized)
+      setVendedor(match ? match.nombre : normalized, normalized)
     } finally {
       setLoading(false)
     }

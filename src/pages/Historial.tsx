@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { ChevronLeft, RefreshCw, FileDown } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { useHistorial } from '../hooks/useHistorial'
 import { usePedidoStore } from '../store/pedidoStore'
+import { useUIStore } from '../store/uiStore'
 import { generateRemitoPDF } from '../services/pdf'
-import { formatCurrency } from '../utils/format'
+import { formatCurrency, formatDate } from '../utils/format'
 import type { PedidoHistorial } from '../types'
 
 const ESTADO_BADGE: Record<string, string> = {
@@ -25,10 +26,27 @@ export default function Historial() {
   const { pedidos, loading, error, refetch } = useHistorial()
   const vendedor = usePedidoStore(s => s.vendedor)
   const vendedorDni = usePedidoStore(s => s.vendedorDni)
+  const showToast = useUIStore(s => s.showToast)
 
   const today = new Date().toISOString().slice(0, 10)
   const [search, setSearch] = useState('')
+  const [syncing, setSyncing] = useState(false)
   const [downloadingId, setDownloadingId] = useState<string | null>(null)
+  const syncingRef = useRef(false)
+
+  useEffect(() => {
+    if (syncingRef.current && !loading) {
+      syncingRef.current = false
+      setSyncing(false)
+      showToast('Historial sincronizado', 'success')
+    }
+  }, [loading])
+
+  function handleSync() {
+    syncingRef.current = true
+    setSyncing(true)
+    refetch()
+  }
 
   async function handleDownloadPDF(e: React.MouseEvent, p: PedidoHistorial) {
     e.stopPropagation()
@@ -67,8 +85,9 @@ export default function Historial() {
           </button>
           <h2 className="text-xl font-bold text-gray-900">Historial</h2>
         </div>
-        <button onClick={refetch} className="flex items-center gap-1 text-sm text-brand-800 hover:text-brand-900 font-medium cursor-pointer">
-          <RefreshCw size={14} />Refrescar
+        <button onClick={handleSync} disabled={syncing} className="flex items-center gap-1 text-sm text-brand-800 hover:text-brand-900 disabled:opacity-50 font-medium cursor-pointer">
+          <RefreshCw size={14} className={syncing ? 'animate-spin' : ''} />
+          {syncing ? 'Sincronizando…' : 'Sincronizar'}
         </button>
       </div>
 
@@ -98,7 +117,6 @@ export default function Historial() {
         </div>
       </div>
 
-      {loading && <p className="text-sm text-center py-8" style={{ color: 'var(--color-text-muted)' }}>Cargando historial…</p>}
       {error && <p className="text-sm text-brand-700">{error}</p>}
 
       {!loading && filtered.length === 0 && (
@@ -116,25 +134,23 @@ export default function Historial() {
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
                   <p className="font-medium text-gray-900 truncate">{p.cliente}</p>
-                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{p.fecha}</p>
+                  <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{formatDate(p.fecha)}</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Vendedor: {p.vendedor}</p>
                   {p.fechaEntrega && (
-                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega: {p.fechaEntrega}</p>
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega: {formatDate(p.fechaEntrega)}</p>
                   )}
                 </div>
                 <div className="flex flex-col items-end gap-1">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-gray-900 text-sm">{formatCurrency(p.total)}</span>
-                    <button
-                      onClick={e => handleDownloadPDF(e, p)}
-                      disabled={downloadingId === p.pedidoId}
-                      className="text-brand-700 hover:text-brand-900 disabled:opacity-40 cursor-pointer"
-                      aria-label="Descargar remito PDF"
-                    >
-                      <FileDown size={16} />
-                    </button>
-                  </div>
+                  <span className="font-semibold text-gray-900 text-sm">{formatCurrency(p.total)}</span>
                   {estadoBadge(p)}
+                  <button
+                    onClick={e => handleDownloadPDF(e, p)}
+                    disabled={downloadingId === p.pedidoId}
+                    className="flex items-center gap-1 text-xs text-brand-700 hover:text-brand-900 disabled:opacity-40 border border-brand-200 rounded px-2 py-0.5 hover:bg-brand-50 cursor-pointer"
+                    aria-label="Descargar remito PDF"
+                  >
+                    <FileDown size={14} />PDF
+                  </button>
                 </div>
               </div>
             </button>

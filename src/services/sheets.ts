@@ -107,9 +107,14 @@ export async function fetchCatalogo(): Promise<Producto[]> {
   const table = await fetchGviz(`${base}&headers=2`)
   const estadoIdx = table.cols.findIndex(c => c.label.trim().toLowerCase() === 'estado')
   return table.rows
-    .filter(row => estadoIdx < 0 || cellNumber(row, estadoIdx) === 1)
+    .filter(row => {
+      const codigo = cellValue(row, 0)
+      if (!codigo) return false
+      if (codigo.length <= 2) return true  // category header rows always included
+      return estadoIdx < 0 || cellNumber(row, estadoIdx) === 1
+    })
     .map(row => mapProducto(row, table.cols))
-    .filter(p => Boolean(p.codigo) && (p.codigo.length <= 2 || p.precioMayoristaUnidad > 0))
+    .filter(p => p.codigo.length <= 2 || p.precioMayoristaUnidad > 0)
 }
 
 export interface VendedorInfo {

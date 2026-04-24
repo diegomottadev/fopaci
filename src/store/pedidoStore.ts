@@ -101,7 +101,9 @@ export const usePedidoStore = create<PedidoState>()(
             rowIndex: -1,
             nombre: pedido.cliente,
             ...(pedido.dniCuilCodigo ? { cuil: pedido.dniCuilCodigo } : {}),
-            extra: {},
+            extra: pedido.nombreComercial
+              ? { 'nombre comercial': pedido.nombreComercial }
+              : {},
           },
           tipoPrecio: DEFAULT_TIPO_PRECIO,
           items: [...pedido.items],

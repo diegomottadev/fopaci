@@ -20,5 +20,5 @@ export async function enviarPedido(payload: WebhookPayload): Promise<void> {
   url.searchParams.set('action', payload.action)
   url.searchParams.set('pedido', JSON.stringify(payload.pedido))
 
-  await fetch(url.toString())
+  await fetch(url.toString(), { mode: 'no-cors' })
 }

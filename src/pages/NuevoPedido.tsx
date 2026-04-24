@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, RefreshCw } from 'lucide-react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { ClienteCombobox } from '../components/ClienteCombobox'
 import { usePedidoStore } from '../store/pedidoStore'
@@ -38,6 +38,7 @@ export default function NuevoPedido() {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null)
   const [syncing, setSyncing] = useState(false)
   const [syncingClientes, setSyncingClientes] = useState(false)
+  const [pedidoAbierto, setPedidoAbierto] = useState(false)
 
   // Hooks
   const { catalogo, loading: catalogoLoading, sync } = useCatalogo()
@@ -137,8 +138,9 @@ export default function NuevoPedido() {
               }
             }}
             disabled={syncingClientes}
-            className="text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-1 text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
           >
+            <RefreshCw size={12} className={syncingClientes ? 'animate-spin' : ''} />
             {syncingClientes ? 'Sincronizando…' : 'Sincronizar'}
           </button>
         </div>
@@ -172,6 +174,40 @@ export default function NuevoPedido() {
           />
         )}
       </div>
+
+      {/* Order summary */}
+      {items.length > 0 && (
+        <div className="bg-brand-50 rounded-lg border border-brand-100">
+          <button
+            onClick={() => setPedidoAbierto(o => !o)}
+            className="w-full flex items-center justify-between px-3 py-2 cursor-pointer"
+          >
+            <span className="text-sm font-semibold text-brand-800">
+              Pedido actual
+              {!pedidoAbierto && (
+                <span className="ml-2 font-normal text-brand-600">
+                  {items.length} ítem{items.length !== 1 ? 's' : ''} · ${total.toLocaleString('es-AR')}
+                </span>
+              )}
+            </span>
+            {pedidoAbierto ? <ChevronUp size={16} className="text-brand-600" /> : <ChevronDown size={16} className="text-brand-600" />}
+          </button>
+          {pedidoAbierto && (
+            <div className="px-3 pb-3 space-y-1">
+              {items.map(item => (
+                <div key={item.codigo} className="flex justify-between text-sm" style={{ color: 'var(--color-text-muted)' }}>
+                  <span>{item.descripcion} × {item.unidades}</span>
+                  <span>${item.subtotal.toLocaleString('es-AR')}</span>
+                </div>
+              ))}
+              <div className="border-t pt-1 flex justify-between font-semibold text-gray-900">
+                <span>Total</span>
+                <span>${total.toLocaleString('es-AR')}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Tipo precio */}
       <div className="flex gap-2">
@@ -207,8 +243,9 @@ export default function NuevoPedido() {
               }
             }}
             disabled={syncing}
-            className="text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
+            className="flex items-center gap-1 text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
           >
+            <RefreshCw size={12} className={syncing ? 'animate-spin' : ''} />
             {syncing ? 'Sincronizando…' : 'Sincronizar'}
           </button>
         </div>
@@ -293,23 +330,6 @@ export default function NuevoPedido() {
           </p>
         )}
       </div>
-
-      {/* Order summary */}
-      {items.length > 0 && (
-        <div className="bg-brand-50 rounded-lg p-3 space-y-1 border border-brand-100">
-          <p className="text-sm font-semibold text-brand-800">Pedido actual</p>
-          {items.map(item => (
-            <div key={item.codigo} className="flex justify-between text-sm" style={{ color: 'var(--color-text-muted)' }}>
-              <span>{item.descripcion} × {item.unidades}</span>
-              <span>${item.subtotal.toLocaleString('es-AR')}</span>
-            </div>
-          ))}
-          <div className="border-t pt-1 flex justify-between font-semibold text-gray-900">
-            <span>Total</span>
-            <span>${total.toLocaleString('es-AR')}</span>
-          </div>
-        </div>
-      )}
 
       {/* Sticky bottom CTA */}
       {items.length > 0 && (

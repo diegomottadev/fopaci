@@ -1,6 +1,6 @@
 import { jsPDF } from 'jspdf'
 import type { WebhookPayload } from '../types'
-import { formatCurrency } from '../utils/format'
+import { formatCurrency, formatDate } from '../utils/format'
 
 async function loadLogoDataUrl(): Promise<string> {
   const response = await fetch(`${import.meta.env.BASE_URL}fopaci-logo.webp`)
@@ -35,9 +35,9 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
 
   // Dates — top-right, aligned with logo
   doc.setFontSize(10)
-  doc.text(`Fecha: ${pedido.fecha}`, 150, 15)
+  doc.text(`Fecha: ${formatDate(pedido.fecha)}`, 150, 15)
   if (pedido.fechaEntrega) {
-    doc.text(`Entrega: ${pedido.fechaEntrega}`, 150, 21)
+    doc.text(`Entrega: ${formatDate(pedido.fechaEntrega)}`, 150, 21)
   }
 
   let y = 34
