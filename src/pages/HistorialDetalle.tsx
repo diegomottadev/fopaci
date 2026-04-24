@@ -128,14 +128,6 @@ export default function HistorialDetalle() {
         </div>
       </div>
 
-      {/* Observacion */}
-      {pedido.observacion && (
-        <div className="bg-white border rounded-lg p-4 text-sm" style={{ borderColor: 'var(--color-border)' }}>
-          <span className="block font-medium text-gray-700 mb-1">Observación</span>
-          <p className="whitespace-pre-wrap" style={{ color: 'var(--color-text-muted)' }}>{pedido.observacion}</p>
-        </div>
-      )}
-
       {/* Items */}
       <div className="space-y-1">
         {pedido.items.map((item, i) => {
@@ -181,6 +173,14 @@ export default function HistorialDetalle() {
           <span>{formatCurrency(pedido.total)}</span>
         </div>
       </div>
+
+      {/* Observacion */}
+      {pedido.observacion && (
+        <div className="bg-white border rounded-lg p-4 text-sm" style={{ borderColor: 'var(--color-border)' }}>
+          <span className="block font-medium text-gray-700 mb-1">Observación</span>
+          <p className="whitespace-pre-wrap" style={{ color: 'var(--color-text-muted)' }}>{pedido.observacion}</p>
+        </div>
+      )}
 
       {/* Actions */}
       <div className="space-y-2">

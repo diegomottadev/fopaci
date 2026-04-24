@@ -125,5 +125,16 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
   // Final separator
   doc.line(10, y, 200, y)
 
-  doc.save(`remito-${pedido.pedidoId}.pdf`)
+  const filename = `remito-${pedido.pedidoId}.pdf`
+  const blob = doc.output('blob')
+  const file = new File([blob], filename, { type: 'application/pdf' })
+
+  if (navigator.canShare?.({ files: [file] })) {
+    await navigator.share({
+      files: [file],
+      title: `Remito ${pedido.pedidoId}`,
+    })
+  } else {
+    doc.save(filename)
+  }
 }
