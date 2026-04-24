@@ -136,6 +136,9 @@ export default function Historial() {
                   <p className="font-medium text-gray-900 truncate">{p.cliente}</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>{formatDate(p.fecha)}</p>
                   <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Vendedor: {p.vendedor}</p>
+                  {p.localidad && (
+                    <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Localidad: {p.localidad}</p>
+                  )}
                   {p.fechaEntrega && (
                     <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega: {formatDate(p.fechaEntrega)}</p>
                   )}
