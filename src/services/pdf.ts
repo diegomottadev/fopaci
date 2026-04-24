@@ -60,6 +60,14 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
   }
   doc.text(`DNI/CUIT: ${pedido.dniCuilCodigo}`, 10, y)
   y += 7
+  if (pedido.localidad) {
+    doc.text(`Localidad: ${pedido.localidad}`, 10, y)
+    y += 7
+  }
+  if (pedido.domicilio) {
+    doc.text(`Domicilio: ${pedido.domicilio}`, 10, y)
+    y += 7
+  }
   doc.text(`Pedido #: ${pedido.pedidoId}`, 10, y)
   y += 7
 

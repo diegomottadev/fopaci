@@ -39,6 +39,8 @@ export interface WebhookPayload {
     vendedor: string
     cliente: string
     nombreComercial?: string
+    localidad?: string
+    domicilio?: string
     dniCuilCodigo: string
     items: PedidoItem[]
     total: number
@@ -55,6 +57,8 @@ export interface PedidoHistorial {
   vendedor: string
   cliente: string
   nombreComercial?: string
+  localidad?: string
+  domicilio?: string
   dniCuilCodigo: string
   items: PedidoItem[]
   total: number

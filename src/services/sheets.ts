@@ -202,6 +202,8 @@ export async function fetchPedidos(): Promise<PedidoHistorial[]> {
         vendedor: cellValue(row, 1),
         cliente: cellValue(row, 2),
         nombreComercial: cellValue(row, 15) || undefined,
+        localidad: cellValue(row, 18) || undefined,
+        domicilio: cellValue(row, 19) || undefined,
         dniCuilCodigo: cellValue(row, 3),
         items: [item],
         total: cellNumber(row, 11),

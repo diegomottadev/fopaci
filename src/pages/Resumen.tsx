@@ -74,6 +74,16 @@ export default function Resumen() {
           const key = Object.keys(extra).find(k => k.toLowerCase() === 'nombre comercial')
           return key ? extra[key] || undefined : undefined
         })(),
+        localidad: (() => {
+          const extra = cliente?.extra ?? {}
+          const key = Object.keys(extra).find(k => k.toLowerCase() === 'localidad')
+          return key ? extra[key] || undefined : undefined
+        })(),
+        domicilio: (() => {
+          const extra = cliente?.extra ?? {}
+          const key = Object.keys(extra).find(k => k.toLowerCase() === 'domicilio')
+          return key ? extra[key] || undefined : undefined
+        })(),
         dniCuilCodigo: cliente?.cuil ?? cliente?.dni ?? cliente?.codigo ?? '',
         items: items.map(i => ({
           ...i,

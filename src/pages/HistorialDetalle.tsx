@@ -119,6 +119,8 @@ export default function HistorialDetalle() {
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Vendedor</span><span>{pedido.vendedor}</span></div>
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Cliente</span><span className="font-medium">{pedido.cliente}</span></div>
         {pedido.dniCuilCodigo && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>CUIT/DNI</span><span>{pedido.dniCuilCodigo}</span></div>}
+        {pedido.localidad && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Localidad</span><span>{pedido.localidad}</span></div>}
+        {pedido.domicilio && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Domicilio</span><span>{pedido.domicilio}</span></div>}
         {pedido.fechaEntrega && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega</span><span>{formatDate(pedido.fechaEntrega)}</span></div>}
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Estado</span>
           <span className={`text-xs px-2 py-0.5 rounded-full ${
