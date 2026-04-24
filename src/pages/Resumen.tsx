@@ -40,7 +40,8 @@ export default function Resumen() {
     return <Navigate to="/pedido/nuevo" replace />
   }
 
-  const fecha = new Date().toISOString().slice(0, 10) // YYYY-MM-DD
+  const today = new Date()
+  const fecha = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`
 
   function parsePct(val: string): number {
     const n = parseFloat(val)
@@ -246,7 +247,7 @@ export default function Resumen() {
           type="date"
           min={fecha}
           value={fechaEntrega}
-          onChange={e => setFechaEntrega(e.target.value)}
+          onChange={e => { if (!e.target.value || e.target.value >= fecha) setFechaEntrega(e.target.value) }}
           disabled={confirmado}
           className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800 disabled:opacity-50 disabled:cursor-not-allowed"
           style={{ borderColor: 'var(--color-border)' }}
