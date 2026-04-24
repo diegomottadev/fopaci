@@ -42,6 +42,21 @@ function cellDate(row: GvizRow, index: number): string {
   return raw.slice(0, 10)
 }
 
+// gviz returns datetime cells as "Date(year,month0,day,h,m,s)" — normalize to DD/MM/YYYY HH:mm
+function cellDateTime(row: GvizRow, index: number): string {
+  const raw = cellValue(row, index)
+  const match = raw.match(/^Date\((\d+),(\d+),(\d+),(\d+),(\d+)/)
+  if (match) {
+    const d = match[3].padStart(2, '0')
+    const mo = String(parseInt(match[2]) + 1).padStart(2, '0')
+    const y = match[1]
+    const h = match[4].padStart(2, '0')
+    const mi = match[5].padStart(2, '0')
+    return `${d}/${mo}/${y} ${h}:${mi}`
+  }
+  return raw
+}
+
 function cellNumber(row: GvizRow, index: number): number {
   const cell = row.c[index]
   if (!cell || cell.v === null || cell.v === undefined) return 0
@@ -199,7 +214,7 @@ export async function fetchPedidos(): Promise<PedidoHistorial[]> {
       map.set(pedidoId, {
         pedidoId,
         fecha: cellDate(row, 0),
-        horaRegistro: cellValue(row, 16) || undefined,
+        horaRegistro: cellDateTime(row, 16) || undefined,
         vendedor: cellValue(row, 1),
         cliente: cellValue(row, 2),
         nombreComercial: cellValue(row, 15) || undefined,
