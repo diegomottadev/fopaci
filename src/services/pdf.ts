@@ -125,7 +125,9 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
   // Final separator
   doc.line(10, y, 200, y)
 
-  const filename = `remito-${pedido.pedidoId}.pdf`
+  const fechaStr = pedido.fecha.split('-').reverse().join('-') // YYYY-MM-DD → DD-MM-YYYY
+  const clienteStr = pedido.cliente.replace(/[/\\:*?"<>|]/g, '').trim()
+  const filename = `Remito-${clienteStr}-${fechaStr}.pdf`
   const blob = doc.output('blob')
   const file = new File([blob], filename, { type: 'application/pdf' })
 
