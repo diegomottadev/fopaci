@@ -9,6 +9,12 @@ import { generateRemitoPDF } from '../services/pdf'
 import { formatCurrency, formatDate } from '../utils/format'
 import type { WebhookPayload } from '../types'
 
+function getExtra(extra: Record<string, string> | undefined, key: string): string {
+  if (!extra) return ''
+  const found = Object.keys(extra).find(k => k.toLowerCase() === key.toLowerCase())
+  return found ? extra[found] : ''
+}
+
 export default function Resumen() {
   const navigate = useNavigate()
   const pedidoId = usePedidoStore(s => s.pedidoId)
@@ -179,6 +185,18 @@ export default function Resumen() {
           <div className="flex justify-between">
             <span style={{ color: 'var(--color-text-muted)' }}>CUIT/DNI</span>
             <span className="font-medium">{cliente.cuil ?? cliente.dni}</span>
+          </div>
+        )}
+        {getExtra(cliente?.extra, 'localidad') && (
+          <div className="flex justify-between">
+            <span style={{ color: 'var(--color-text-muted)' }}>Localidad</span>
+            <span className="font-medium">{getExtra(cliente?.extra, 'localidad')}</span>
+          </div>
+        )}
+        {getExtra(cliente?.extra, 'domicilio') && (
+          <div className="flex justify-between">
+            <span style={{ color: 'var(--color-text-muted)' }}>Domicilio</span>
+            <span className="font-medium">{getExtra(cliente?.extra, 'domicilio')}</span>
           </div>
         )}
         <div className="flex justify-between">
