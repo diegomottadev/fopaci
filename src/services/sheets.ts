@@ -52,7 +52,7 @@ function cellDateTime(row: GvizRow, index: number): string {
     const y = match[1]
     const h = match[4].padStart(2, '0')
     const mi = match[5].padStart(2, '0')
-    return `${d}/${mo}/${y} ${h}:${mi}`
+    return `${d}/${mo}/${y} ${h}:${mi}hs`
   }
   return raw
 }
