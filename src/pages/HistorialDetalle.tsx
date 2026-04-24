@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, RefreshCw } from 'lucide-react'
 
 const ESTADO_BADGE: Record<string, string> = {
   Pendiente:  'bg-yellow-100 text-yellow-800',
@@ -29,8 +29,8 @@ export default function HistorialDetalle() {
 
   if (loading) {
     return (
-      <div className="text-center py-8">
-        <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Cargando pedido…</p>
+      <div className="flex justify-center py-12">
+        <RefreshCw size={24} className="animate-spin" style={{ color: 'var(--color-text-muted)' }} />
       </div>
     )
   }
