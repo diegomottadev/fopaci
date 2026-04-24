@@ -11,15 +11,6 @@ import type { WebhookPayload } from '../types'
 
 export default function Resumen() {
   const navigate = useNavigate()
-  const [sending, setSending] = useState(false)
-  const [confirmando, setConfirmando] = useState(false)
-  const [confirmado, setConfirmado] = useState(false)
-  const [pdfGenerated, setPdfGenerated] = useState(false)
-  const [fechaEntrega, setFechaEntrega] = useState('')
-  const [observacion, setObservacion] = useState('')
-  const [descuentos, setDescuentos] = useState<Record<string, string>>({})
-  const [descuentoGeneral, setDescuentoGeneral] = useState('')
-
   const pedidoId = usePedidoStore(s => s.pedidoId)
   const vendedor = usePedidoStore(s => s.vendedor)
   const cliente = usePedidoStore(s => s.cliente)
@@ -27,7 +18,23 @@ export default function Resumen() {
   const items = usePedidoStore(s => s.items)
   const resetPedido = usePedidoStore(s => s.resetPedido)
   const isEditing = usePedidoStore(s => s.isEditing)
+  const editObservacion = usePedidoStore(s => s.editObservacion)
+  const editFechaEntrega = usePedidoStore(s => s.editFechaEntrega)
+  const editDescuentoGeneral = usePedidoStore(s => s.editDescuentoGeneral)
   const showToast = useUIStore(s => s.showToast)
+
+  const [sending, setSending] = useState(false)
+  const [confirmando, setConfirmando] = useState(false)
+  const [confirmado, setConfirmado] = useState(false)
+  const [pdfGenerated, setPdfGenerated] = useState(false)
+  const [fechaEntrega, setFechaEntrega] = useState(editFechaEntrega)
+  const [observacion, setObservacion] = useState(editObservacion)
+  const [descuentos, setDescuentos] = useState<Record<string, string>>(() =>
+    isEditing
+      ? Object.fromEntries(items.filter(i => (i.descuento ?? 0) > 0).map(i => [i.codigo, String(i.descuento)]))
+      : {}
+  )
+  const [descuentoGeneral, setDescuentoGeneral] = useState(editDescuentoGeneral > 0 ? String(editDescuentoGeneral) : '')
 
   if (items.length === 0) {
     return <Navigate to="/pedido/nuevo" replace />

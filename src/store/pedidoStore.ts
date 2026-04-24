@@ -8,13 +8,17 @@ const DEFAULT_TIPO_PRECIO: TipoPrecio = 'mayorista'
 export interface PedidoState {
   pedidoId: string
   vendedor: string
+  vendedorDni: string
   cliente: Cliente | null
   tipoPrecio: TipoPrecio
   items: PedidoItem[]
   total: number
   isEditing: boolean
+  editObservacion: string
+  editFechaEntrega: string
+  editDescuentoGeneral: number
 
-  setVendedor: (v: string) => void
+  setVendedor: (nombre: string, dni?: string) => void
   setCliente: (c: Cliente | null) => void
   setTipoPrecio: (t: TipoPrecio) => void
   addItem: (item: PedidoItem) => void
@@ -32,13 +36,17 @@ export const usePedidoStore = create<PedidoState>()(
     (set) => ({
       pedidoId: uuidv4(),
       vendedor: '',
+      vendedorDni: '',
       cliente: null,
       tipoPrecio: 'mayorista',
       items: [],
       total: 0,
       isEditing: false,
+      editObservacion: '',
+      editFechaEntrega: '',
+      editDescuentoGeneral: 0,
 
-      setVendedor: (v) => set({ vendedor: v }),
+      setVendedor: (nombre, dni = '') => set({ vendedor: nombre, vendedorDni: dni }),
 
       setCliente: (c) => set({ cliente: c }),
 
@@ -80,6 +88,9 @@ export const usePedidoStore = create<PedidoState>()(
           total: 0,
           vendedor: state.vendedor,
           isEditing: false,
+          editObservacion: '',
+          editFechaEntrega: '',
+          editDescuentoGeneral: 0,
         })),
 
       loadForEdit: (pedido) =>
@@ -96,11 +107,14 @@ export const usePedidoStore = create<PedidoState>()(
           items: [...pedido.items],
           total: pedido.total,
           isEditing: true,
+          editObservacion: pedido.observacion ?? '',
+          editFechaEntrega: pedido.fechaEntrega ?? '',
+          editDescuentoGeneral: pedido.descuentoGeneral ?? 0,
         })),
     }),
     {
       name: 'vinoteca-vendedor',
-      partialize: (state) => ({ vendedor: state.vendedor }),
+      partialize: (state) => ({ vendedor: state.vendedor, vendedorDni: state.vendedorDni }),
     }
   )
 )
