@@ -199,6 +199,7 @@ export async function fetchPedidos(): Promise<PedidoHistorial[]> {
       map.set(pedidoId, {
         pedidoId,
         fecha: cellDate(row, 0),
+        horaRegistro: cellValue(row, 16) || undefined,
         vendedor: cellValue(row, 1),
         cliente: cellValue(row, 2),
         nombreComercial: cellValue(row, 15) || undefined,

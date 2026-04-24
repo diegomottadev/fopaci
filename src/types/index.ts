@@ -54,6 +54,7 @@ export interface WebhookPayload {
 export interface PedidoHistorial {
   pedidoId: string
   fecha: string
+  horaRegistro?: string
   vendedor: string
   cliente: string
   nombreComercial?: string
