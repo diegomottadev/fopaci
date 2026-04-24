@@ -290,7 +290,7 @@ export default function Resumen() {
           style={!confirmado ? { borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' } : {}}
         >
           {pdfGenerated
-            ? <span className="flex items-center justify-center gap-1"><Check size={14} />PDF descargado</span>
+            ? <span className="flex items-center justify-center gap-1">PDF descargado <Check size={14} /></span>
             : 'Descargar remito PDF'}
         </button>
         <button
