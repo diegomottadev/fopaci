@@ -3,10 +3,16 @@ import type { Producto } from '../types'
 import { fetchCatalogo } from '../services/sheets'
 import { getCatalogo, saveCatalogo } from '../db/offlineQueue'
 
-export function useCatalogo(): { catalogo: Producto[]; loading: boolean; error: string | null } {
+export function useCatalogo(): { catalogo: Producto[]; loading: boolean; error: string | null; sync: () => Promise<void> } {
   const [catalogo, setCatalogo] = useState<Producto[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  async function sync() {
+    const data = await fetchCatalogo()
+    setCatalogo(data)
+    await saveCatalogo(data)
+  }
 
   useEffect(() => {
     let cancelled = false
@@ -45,5 +51,5 @@ export function useCatalogo(): { catalogo: Producto[]; loading: boolean; error: 
     return () => { cancelled = true }
   }, [])
 
-  return { catalogo, loading, error }
+  return { catalogo, loading, error, sync }
 }

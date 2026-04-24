@@ -12,8 +12,10 @@ import type { WebhookPayload } from '../types'
 export default function Resumen() {
   const navigate = useNavigate()
   const [sending, setSending] = useState(false)
+  const [confirmando, setConfirmando] = useState(false)
   const [confirmado, setConfirmado] = useState(false)
   const [pdfGenerated, setPdfGenerated] = useState(false)
+  const [fechaEntrega, setFechaEntrega] = useState('')
   const [observacion, setObservacion] = useState('')
   const [descuentos, setDescuentos] = useState<Record<string, string>>({})
   const [descuentoGeneral, setDescuentoGeneral] = useState('')
@@ -23,7 +25,6 @@ export default function Resumen() {
   const cliente = usePedidoStore(s => s.cliente)
   const tipoPrecio = usePedidoStore(s => s.tipoPrecio)
   const items = usePedidoStore(s => s.items)
-  const total = usePedidoStore(s => s.total)
   const resetPedido = usePedidoStore(s => s.resetPedido)
   const isEditing = usePedidoStore(s => s.isEditing)
   const showToast = useUIStore(s => s.showToast)
@@ -57,6 +58,7 @@ export default function Resumen() {
       pedido: {
         pedidoId,
         fecha,
+        horaRegistro: new Date().toLocaleString('sv-SE').replace('T', ' '),
         vendedor,
         cliente: cliente?.nombre ?? '',
         nombreComercial: (() => {
@@ -74,6 +76,7 @@ export default function Resumen() {
         estado: 'Pendiente',
         descuentoGeneral: pctGeneral || 0,
         observacion: observacion.trim() || undefined,
+        fechaEntrega: fechaEntrega || undefined,
       }
     }
   }
@@ -109,6 +112,32 @@ export default function Resumen() {
 
   return (
     <div className="space-y-6">
+      {confirmando && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-sm p-6 space-y-4">
+            <p className="text-base font-semibold text-gray-900 text-center">¿Confirmar y enviar el pedido?</p>
+            <p className="text-sm text-center" style={{ color: 'var(--color-text-muted)' }}>
+              Esta acción enviará el pedido al sistema.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={() => { setConfirmando(false); handleConfirmar() }}
+                disabled={sending}
+                className="flex-1 bg-brand-800 text-white py-2.5 rounded-lg font-semibold hover:bg-brand-900 transition-colors disabled:opacity-50 cursor-pointer"
+              >
+                {sending ? 'Enviando…' : 'Sí, confirmar'}
+              </button>
+              <button
+                onClick={() => setConfirmando(false)}
+                className="flex-1 border py-2.5 rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors cursor-pointer"
+                style={{ borderColor: 'var(--color-border)', color: 'var(--color-text-muted)' }}
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex items-center gap-2">
         <button onClick={() => navigate('/pedido/nuevo')} className="text-brand-700 hover:text-brand-900 cursor-pointer">
           <ChevronLeft size={20} />
@@ -201,6 +230,22 @@ export default function Resumen() {
         </div>
       </div>
 
+      {/* Fecha de entrega */}
+      <div className="space-y-1">
+        <label className="block text-sm font-medium text-gray-700">
+          Fecha de entrega <span className="text-brand-700">*</span>
+        </label>
+        <input
+          type="date"
+          min={fecha}
+          value={fechaEntrega}
+          onChange={e => setFechaEntrega(e.target.value)}
+          disabled={confirmado}
+          className="w-full border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-800 disabled:opacity-50 disabled:cursor-not-allowed"
+          style={{ borderColor: 'var(--color-border)' }}
+        />
+      </div>
+
       {/* Observacion */}
       <div className="space-y-1">
         <label className="block text-sm font-medium text-gray-700">Observación</label>
@@ -218,11 +263,17 @@ export default function Resumen() {
       {/* Actions */}
       <div className="space-y-2">
         <button
-          onClick={handleConfirmar}
+          onClick={() => {
+            if (!fechaEntrega) {
+              showToast('Ingresá la fecha de entrega antes de confirmar', 'error')
+              return
+            }
+            setConfirmando(true)
+          }}
           disabled={sending || confirmado}
           className="w-full bg-brand-800 text-white py-3 rounded-lg font-semibold hover:bg-brand-900 transition-colors disabled:opacity-50 cursor-pointer"
         >
-          {sending ? 'Enviando…' : confirmado ? 'Pedido confirmado ✓' : 'Confirmar y Enviar'}
+          {confirmado ? 'Pedido confirmado ✓' : 'Confirmar y Enviar'}
         </button>
         <button
           onClick={handleDescargarPDF}

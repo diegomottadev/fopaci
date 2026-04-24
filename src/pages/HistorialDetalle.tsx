@@ -68,6 +68,7 @@ export default function HistorialDetalle() {
         estado: pedido!.estado,
         descuentoGeneral: pedido!.descuentoGeneral,
         observacion: pedido!.observacion,
+        fechaEntrega: pedido!.fechaEntrega,
       },
     })
   }
@@ -118,6 +119,7 @@ export default function HistorialDetalle() {
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Vendedor</span><span>{pedido.vendedor}</span></div>
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Cliente</span><span className="font-medium">{pedido.cliente}</span></div>
         {pedido.dniCuilCodigo && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>CUIT/DNI</span><span>{pedido.dniCuilCodigo}</span></div>}
+        {pedido.fechaEntrega && <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Fecha de entrega</span><span>{pedido.fechaEntrega}</span></div>}
         <div className="flex justify-between"><span style={{ color: 'var(--color-text-muted)' }}>Estado</span>
           <span className={`text-xs px-2 py-0.5 rounded-full ${
             pedido.isPending ? 'bg-orange-100 text-orange-800' :
@@ -126,17 +128,54 @@ export default function HistorialDetalle() {
         </div>
       </div>
 
+      {/* Observacion */}
+      {pedido.observacion && (
+        <div className="bg-white border rounded-lg p-4 text-sm" style={{ borderColor: 'var(--color-border)' }}>
+          <span className="block font-medium text-gray-700 mb-1">Observación</span>
+          <p className="whitespace-pre-wrap" style={{ color: 'var(--color-text-muted)' }}>{pedido.observacion}</p>
+        </div>
+      )}
+
       {/* Items */}
       <div className="space-y-1">
-        {pedido.items.map((item, i) => (
-          <div key={`${item.codigo}-${i}`} className="flex justify-between text-sm py-1 border-b border-brand-100">
-            <div>
-              <span className="font-medium">{item.descripcion}</span>
-              <span className="ml-2" style={{ color: 'var(--color-text-muted)' }}>× {item.unidades}</span>
+        {pedido.items.map((item, i) => {
+          const pct = item.descuento ?? 0
+          const subtotalOriginal = item.precioUnitario * item.unidades
+          return (
+            <div key={`${item.codigo}-${i}`} className="flex justify-between text-sm py-1 border-b border-brand-100">
+              <div>
+                <span className="font-medium">{item.descripcion}</span>
+                <span className="ml-2" style={{ color: 'var(--color-text-muted)' }}>× {item.unidades}</span>
+                {pct > 0 && (
+                  <span className="ml-2 text-xs text-brand-700">−{pct}%</span>
+                )}
+              </div>
+              <div className="text-right">
+                {pct > 0 && (
+                  <span className="block text-xs line-through" style={{ color: 'var(--color-text-muted)' }}>
+                    {formatCurrency(subtotalOriginal)}
+                  </span>
+                )}
+                <span>{formatCurrency(item.subtotal)}</span>
+              </div>
             </div>
-            <span>{formatCurrency(item.subtotal)}</span>
-          </div>
-        ))}
+          )
+        })}
+        {(pedido.descuentoGeneral ?? 0) > 0 && (() => {
+          const subtotalItems = pedido.items.reduce((acc, i) => acc + i.subtotal, 0)
+          return (
+            <>
+              <div className="flex justify-between text-sm pt-2" style={{ color: 'var(--color-text-muted)' }}>
+                <span>Subtotal</span>
+                <span>{formatCurrency(subtotalItems)}</span>
+              </div>
+              <div className="flex justify-between text-sm text-brand-700">
+                <span>Desc. general {pedido.descuentoGeneral}%</span>
+                <span>−{formatCurrency(subtotalItems - pedido.total)}</span>
+              </div>
+            </>
+          )
+        })()}
         <div className="flex justify-between font-bold text-base pt-2">
           <span>Total</span>
           <span>{formatCurrency(pedido.total)}</span>

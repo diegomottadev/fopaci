@@ -8,6 +8,12 @@ import { useCatalogo } from '../hooks/useCatalogo'
 import { useClientes } from '../hooks/useClientes'
 import type { Producto, Categoria } from '../types'
 
+function getClienteExtra(extra: Record<string, string>, key: string): string {
+  const lkey = key.toLowerCase()
+  const found = Object.keys(extra).find(k => k.toLowerCase() === lkey)
+  return found ? extra[found] : ''
+}
+
 export default function NuevoPedido() {
   const navigate = useNavigate()
   const { clienteId } = useParams()
@@ -30,10 +36,12 @@ export default function NuevoPedido() {
   const [clienteQuery, setClienteQuery] = useState('')
   const [catalogoSearch, setCatalogoSearch] = useState('')
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState<string | null>(null)
+  const [syncing, setSyncing] = useState(false)
+  const [syncingClientes, setSyncingClientes] = useState(false)
 
   // Hooks
-  const { catalogo, loading: catalogoLoading } = useCatalogo()
-  const { clientes, loading: clientesLoading } = useClientes(clienteQuery)
+  const { catalogo, loading: catalogoLoading, sync } = useCatalogo()
+  const { clientes, loading: clientesLoading, sync: syncClientes } = useClientes(clienteQuery)
 
   // Filtered catalog
   const categorias = useMemo<Categoria[]>(
@@ -114,14 +122,40 @@ export default function NuevoPedido() {
 
       {/* Cliente search */}
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">Cliente</label>
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium text-gray-700">Cliente</label>
+          <button
+            onClick={async () => {
+              setSyncingClientes(true)
+              try {
+                await syncClientes()
+                showToast('Clientes sincronizados', 'success')
+              } catch {
+                showToast('Error al sincronizar clientes', 'error')
+              } finally {
+                setSyncingClientes(false)
+              }
+            }}
+            disabled={syncingClientes}
+            className="text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
+          >
+            {syncingClientes ? 'Sincronizando…' : 'Sincronizar'}
+          </button>
+        </div>
 
         {cliente ? (
           <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-lg px-3 py-2">
             <div>
-              <p className="font-medium text-gray-900">{cliente.nombre}</p>
-              {(cliente.cuil || cliente.dni) && (
-                <p className="text-xs text-gray-500">{cliente.cuil ?? cliente.dni}</p>
+              <p className="font-medium text-gray-900">
+                {cliente.nombre}
+                {getClienteExtra(cliente.extra, 'nombre comercial') && (
+                  <span className="ml-2 text-xs font-normal text-gray-500">
+                    {getClienteExtra(cliente.extra, 'nombre comercial')}
+                  </span>
+                )}
+              </p>
+              {getClienteExtra(cliente.extra, 'localidad') && (
+                <p className="text-xs text-gray-500">{getClienteExtra(cliente.extra, 'localidad')}</p>
               )}
             </div>
             <button onClick={() => setCliente(null)} className="text-xs text-brand-700 hover:text-brand-900 cursor-pointer">
@@ -158,7 +192,26 @@ export default function NuevoPedido() {
 
       {/* Catálogo */}
       <div className="space-y-2">
-        <label className="block text-sm font-medium text-gray-700">Catálogo</label>
+        <div className="flex items-center justify-between">
+          <label className="text-sm font-medium text-gray-700">Catálogo</label>
+          <button
+            onClick={async () => {
+              setSyncing(true)
+              try {
+                await sync()
+                showToast('Catálogo sincronizado', 'success')
+              } catch {
+                showToast('Error al sincronizar el catálogo', 'error')
+              } finally {
+                setSyncing(false)
+              }
+            }}
+            disabled={syncing}
+            className="text-xs text-brand-700 hover:text-brand-900 disabled:opacity-50 cursor-pointer"
+          >
+            {syncing ? 'Sincronizando…' : 'Sincronizar'}
+          </button>
+        </div>
         {!catalogoLoading && categorias.length > 0 && (
           <select
             value={categoriaSeleccionada ?? ''}
@@ -194,7 +247,7 @@ export default function NuevoPedido() {
                 style={qty === 0 ? { borderColor: 'var(--color-border)' } : {}}
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{producto.descripcion}</p>
+                  <p className="text-sm font-medium text-gray-900">{producto.descripcion}</p>
                   <p className="text-xs text-gray-500">{producto.codigo} · ${precio.toLocaleString('es-AR')}</p>
                 </div>
                 <div className="flex items-center gap-2 ml-2">
@@ -204,7 +257,18 @@ export default function NuevoPedido() {
                         onClick={() => handleUpdateUnidades(producto.codigo, qty - 1)}
                         className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100"
                       >−</button>
-                      <span className="w-6 text-center text-sm font-medium">{qty}</span>
+                      <input
+                        type="number"
+                        min="1"
+                        value={qty}
+                        onChange={e => {
+                          const v = parseInt(e.target.value)
+                          if (!isNaN(v) && v >= 1) handleUpdateUnidades(producto.codigo, v)
+                        }}
+                        onClick={e => (e.target as HTMLInputElement).select()}
+                        className="w-12 text-center text-sm font-medium border rounded px-1 py-0.5 focus:outline-none focus:ring-1 focus:ring-brand-800"
+                        style={{ borderColor: 'var(--color-border)' }}
+                      />
                       <button
                         onClick={() => handleUpdateUnidades(producto.codigo, qty + 1)}
                         className="w-7 h-7 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-100"

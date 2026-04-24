@@ -3,7 +3,7 @@ import type { WebhookPayload } from '../types'
 import { formatCurrency } from '../utils/format'
 
 async function loadLogoDataUrl(): Promise<string> {
-  const response = await fetch('/fopaci-logo.webp')
+  const response = await fetch(`${import.meta.env.BASE_URL}fopaci-logo.webp`)
   const blob = await response.blob()
   return new Promise((resolve, reject) => {
     const img = new Image()
@@ -33,9 +33,12 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
     // continue without logo if it fails to load
   }
 
-  // Date — top-right, aligned with logo
+  // Dates — top-right, aligned with logo
   doc.setFontSize(10)
   doc.text(`Fecha: ${pedido.fecha}`, 150, 15)
+  if (pedido.fechaEntrega) {
+    doc.text(`Entrega: ${pedido.fechaEntrega}`, 150, 21)
+  }
 
   let y = 34
 
@@ -108,7 +111,13 @@ export async function generateRemitoPDF(payload: WebhookPayload): Promise<void> 
 
   if (pedido.observacion) {
     y += 10
-    doc.text(`Observación: ${pedido.observacion}`, 10, y)
+    doc.text('Observación:', 10, y)
+    y += 6
+    const lines = pedido.observacion
+      .split('\n')
+      .flatMap(line => doc.splitTextToSize(line || ' ', 190) as string[])
+    doc.text(lines, 10, y)
+    y += (lines.length - 1) * 5
   }
 
   y += 4

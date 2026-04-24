@@ -56,7 +56,11 @@ export function useHistorial(): {
         map.set(p.pedidoId, p)
       }
 
-      setPedidos(Array.from(map.values()))
+      const sorted = Array.from(map.values()).sort((a, b) => {
+        if (b.fecha !== a.fecha) return b.fecha.localeCompare(a.fecha)
+        return b.pedidoId.localeCompare(a.pedidoId)
+      })
+      setPedidos(sorted)
       setLoading(false)
     }
 

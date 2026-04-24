@@ -105,7 +105,9 @@ async function fetchGviz(url: string): Promise<GvizTable> {
 export async function fetchCatalogo(): Promise<Producto[]> {
   const base = buildGvizUrl(import.meta.env.VITE_SHEET_CATALOGO, 'Catálogo')
   const table = await fetchGviz(`${base}&headers=2`)
+  const estadoIdx = table.cols.findIndex(c => c.label.trim().toLowerCase() === 'estado')
   return table.rows
+    .filter(row => estadoIdx < 0 || cellNumber(row, estadoIdx) === 1)
     .map(row => mapProducto(row, table.cols))
     .filter(p => Boolean(p.codigo) && (p.codigo.length <= 2 || p.precioMayoristaUnidad > 0))
 }
@@ -201,6 +203,7 @@ export async function fetchPedidos(): Promise<PedidoHistorial[]> {
         estado: cellValue(row, 12) as PedidoHistorial['estado'],
         descuentoGeneral: cellNumber(row, 10) || undefined,
         observacion: cellValue(row, 13) || undefined,
+        fechaEntrega: cellDate(row, 17) || undefined,
       })
     }
   })

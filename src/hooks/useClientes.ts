@@ -4,10 +4,16 @@ import { fetchAllClientes } from '../services/sheets'
 import { getCachedClientes, saveClientes } from '../db/offlineQueue'
 import { buscarEnClientePublic } from '../services/sheets'
 
-export function useClientes(query: string): { clientes: Cliente[]; loading: boolean } {
+export function useClientes(query: string): { clientes: Cliente[]; loading: boolean; sync: () => Promise<void> } {
   const [allClientes, setAllClientes] = useState<Cliente[]>([])
   const [loading, setLoading] = useState(false)
   const loadedRef = useRef(false)
+
+  async function sync() {
+    const data = await fetchAllClientes()
+    setAllClientes(data)
+    await saveClientes(data)
+  }
 
   // Load full list once (cache-first, then network)
   useEffect(() => {
@@ -40,5 +46,5 @@ export function useClientes(query: string): { clientes: Cliente[]; loading: bool
     ? allClientes.filter(c => buscarEnClientePublic(c, trimmed))
     : []
 
-  return { clientes, loading: loading && trimmed.length > 0 }
+  return { clientes, loading: loading && trimmed.length > 0, sync }
 }

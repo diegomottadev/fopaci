@@ -35,6 +35,7 @@ export interface WebhookPayload {
   pedido: {
     pedidoId: string
     fecha: string           // "YYYY-MM-DD"
+    horaRegistro?: string   // "YYYY-MM-DD HH:mm:ss" — se setea al confirmar
     vendedor: string
     cliente: string
     nombreComercial?: string
@@ -44,6 +45,7 @@ export interface WebhookPayload {
     estado: 'Pendiente' | 'Cancelado' | 'A cobrar' | 'Finalizado'
     descuentoGeneral?: number  // percentage 0-100, undefined = 0
     observacion?: string
+    fechaEntrega?: string      // "YYYY-MM-DD"
   }
 }
 
@@ -59,6 +61,7 @@ export interface PedidoHistorial {
   estado: 'Pendiente' | 'Cancelado' | 'A cobrar' | 'Finalizado'
   descuentoGeneral?: number
   observacion?: string
+  fechaEntrega?: string
   isPending?: boolean    // true if still in pending-orders queue
 }
 

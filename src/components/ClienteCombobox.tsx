@@ -1,6 +1,12 @@
 import { useRef, useEffect, useState, useId } from 'react'
 import type { Cliente } from '../types'
 
+function getExtra(extra: Record<string, string>, key: string): string {
+  const lkey = key.toLowerCase()
+  const found = Object.keys(extra).find(k => k.toLowerCase() === lkey)
+  return found ? extra[found] : ''
+}
+
 interface ClienteComboboxProps {
   query: string
   onQueryChange: (q: string) => void
@@ -110,11 +116,18 @@ export function ClienteCombobox({ query, onQueryChange, clientes, loading, onSel
               } ${i === activeIndex ? 'bg-brand-50' : 'hover:bg-[#faf7f8]'}`}
               style={i < clientes.length - 1 ? { borderColor: 'var(--color-border)' } : {}}
             >
-              <span className="font-medium text-gray-900">{c.nombre}</span>
-              {(c.cuil || c.dni) && (
-                <span className="ml-2 text-xs" style={{ color: 'var(--color-text-muted)' }}>
-                  {c.cuil ?? c.dni}
-                </span>
+              <p className="font-medium text-gray-900">
+                {c.nombre}
+                {getExtra(c.extra, 'nombre comercial') && (
+                  <span className="ml-2 text-xs font-normal" style={{ color: 'var(--color-text-muted)' }}>
+                    {getExtra(c.extra, 'nombre comercial')}
+                  </span>
+                )}
+              </p>
+              {getExtra(c.extra, 'localidad') && (
+                <p className="text-xs" style={{ color: 'var(--color-text-muted)' }}>
+                  {getExtra(c.extra, 'localidad')}
+                </p>
               )}
             </li>
           ))}

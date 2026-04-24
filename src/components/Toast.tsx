@@ -18,7 +18,7 @@ export default function Toast() {
       role={toast.type === 'error' ? 'alert' : 'status'}
       aria-live={toast.type === 'error' ? 'assertive' : 'polite'}
       aria-atomic="true"
-      className={`fixed bottom-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded shadow-lg text-white z-50
+      className={`fixed bottom-20 left-1/2 -translate-x-1/2 px-4 py-2 rounded shadow-lg text-white text-center z-50
         ${toast.type === 'success' ? 'bg-green-600' : toast.type === 'warning' ? 'bg-amber-500' : 'bg-red-600'}`}
     >
       {toast.message}
